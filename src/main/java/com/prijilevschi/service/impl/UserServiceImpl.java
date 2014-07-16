@@ -2,42 +2,46 @@ package com.prijilevschi.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.prijilevschi.dao.UserDAO;
 import com.prijilevschi.model.User;
 import com.prijilevschi.service.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private	UserDAO userDao;
 	
 	@Transactional
 	public Long save(User user) {
-		return null;
-		
+		Long id;
+		if(user.getId() == null){
+			id = userDao.persist(user);
+		}
+		else {
+			User temp = userDao.merge(user);
+			id = temp.getId();
+		}
+		return id;
 	}
 
 	@Transactional
 	public void delete(User user) {
-		// TODO Auto-generated method stub
+		userDao.remove(user);
 		
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public User getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findById(id);
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findAll();
 	}
 
 	public UserDAO getUserDao() {
