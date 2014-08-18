@@ -1,12 +1,3 @@
-/*******************************************************************************
-*
-* © Copyright by Endava 2014.
-*
-* All Rights Reserved
-*
-* Endava – Internal Use Only
-*
-*******************************************************************************/
 package com.prijilevschi.model;
 
 import java.io.Serializable;
