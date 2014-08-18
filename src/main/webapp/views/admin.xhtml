@@ -10,12 +10,18 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Hello World PrimeFaces</h1>
-
-	<h:form>
-		<p:editor value="#{userController.value}" />
-	</h:form>
-	
-	<h:outputText value="#{userController.createUser()}" />
+	<h1>Admin Panel</h1>
+	<p:outputLabel value="Users list" />
+	<p:dataTable var="user" value="#{adminController.users}">
+		<p:column headerText="ID">
+			<h:outputText value="#{user.id}" />
+		</p:column>
+		<p:column headerText="Username">
+			<h:outputText value="#{user.userName}" />
+		</p:column>
+		<p:column headerText="Password">
+			<h:outputText value="#{user.password}" />
+		</p:column>
+	</p:dataTable>
 </h:body>
 </html>
