@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import com.prijilevschi.enums.ExchangeRateType;
+import com.prijilevschi.enums.CurrencyType;
 
 
 @Embeddable
@@ -19,10 +19,9 @@ public class Payment {
     @Column(name = "pay")
     private BigDecimal pay;
 
-    @Column(name = "exchange_rate")
+    @Column(name = "currency_type")
     @Enumerated(EnumType.STRING)
-    private ExchangeRateType exchangeRate;
-
+    private CurrencyType currencyType;
 
     public Date getEffectiveDate() {
         return effectiveDate;
@@ -40,13 +39,12 @@ public class Payment {
         this.pay = pay;
     }
 
-    public ExchangeRateType getExchangeRate() {
-        return exchangeRate;
-    }
+	public CurrencyType getCurrencyType() {
+		return currencyType;
+	}
 
-    public void setExchangeRate(ExchangeRateType exchangeRate) {
-        this.exchangeRate = exchangeRate;
-    }
-
+	public void setCurrencyType(CurrencyType currencyType) {
+		this.currencyType = currencyType;
+	}
 
 }

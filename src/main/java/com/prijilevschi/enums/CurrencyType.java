@@ -1,6 +1,6 @@
 package com.prijilevschi.enums;
 
-public enum ExchangeRateType {
+public enum CurrencyType {
     /** Moldavian Lei */
     MDL,
     /** American Dollar */

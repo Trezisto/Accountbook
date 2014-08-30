@@ -1,6 +1,5 @@
 package com.prijilevschi.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -10,15 +9,15 @@ import javax.persistence.Table;
 public class IncomeType extends AbstractNamedEntity {
     private static final long serialVersionUID = -1421496095532548801L;
 
-    @OneToOne
-    @Column
-    private Income income;
+    @OneToOne(mappedBy = "incomeType")
+    private ActualIncome income;
 
-    public Income getIncome() {
-        return income;
-    }
+	public ActualIncome getIncome() {
+		return income;
+	}
 
-    public void setIncome(Income income) {
-        this.income = income;
-    }
+	public void setIncome(ActualIncome income) {
+		this.income = income;
+	}
+
 }
