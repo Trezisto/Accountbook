@@ -16,23 +16,23 @@ public class UserController implements Serializable{
 	private static final long serialVersionUID = -2417622386650583160L;
 
 	private String value = "This editor is provided by PrimeFaces";
-	
+
 	@ManagedProperty(value = "#{userService}")
-	private UserService userService; 
-	 
+	private UserService userService;
+
 	public String createUser() {
 //		User user = new User();
 //		user.setUserName("test");
 //		user.setPassword("test");
-//		
+//
 //		Long id = userService.save(user); //constraint violation
-		return userService.getById(1L).getUserName();
+		return "derp";
 	}
-	
+
 	public String getValue() {
 		return value;
 	}
- 
+
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -40,7 +40,7 @@ public class UserController implements Serializable{
 	public UserService getUserService() {
 		return userService;
 	}
-	
+
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
