@@ -44,6 +44,12 @@ public class UserServiceImpl implements UserService {
 		return userDao.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public boolean login(String username, String password) {
+		return userDao.findByUsernameAndPassword(username, password) != null;
+	}
+	
 	public UserDAO getUserDao() {
 		return userDao;
 	}

@@ -19,7 +19,7 @@
 	
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>views/index.xhtml</welcome-file>
+		<welcome-file>views/login.xhtml</welcome-file>
 	</welcome-file-list>
  
  	<!-- Development or Production -->

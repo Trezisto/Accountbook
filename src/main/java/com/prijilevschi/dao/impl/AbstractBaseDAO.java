@@ -11,9 +11,9 @@ import com.prijilevschi.model.AbstractEntity;
 public class AbstractBaseDAO<T extends AbstractEntity> implements BaseDAO<T>{
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
-    private final Class<T> entityType;
+    protected final Class<T> entityType;
 
     AbstractBaseDAO(Class<T> classType){
         entityType = classType;

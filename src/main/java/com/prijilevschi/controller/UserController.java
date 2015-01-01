@@ -18,7 +18,7 @@ public class UserController implements Serializable{
 	private String value = "This editor is provided by PrimeFaces";
 
 	@ManagedProperty(value = "#{userService}")
-	private UserService userService;
+	private transient UserService userService;
 
 	public String createUser() {
 //		User user = new User();
