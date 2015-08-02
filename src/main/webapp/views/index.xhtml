@@ -15,7 +15,15 @@
 		<h1>Hello World PrimeFaces</h1>
 	</p:layoutUnit>
 	<p:layoutUnit position="west" style="min-width:200px;min-height:400px;">
-		<h:outputText value="#{userController.createUser()}" />
+		<h:form>
+			<p:menu>
+				<p:menuitem value="My job" />
+				<p:menuitem value="My plans" />
+				<p:menuitem value="Budget" />
+				<p:menuitem value="My income" />
+				<p:menuitem value="My outcome" />
+			</p:menu>
+		</h:form>
 	</p:layoutUnit>
 	<p:layoutUnit position="center">
 		<h:form>

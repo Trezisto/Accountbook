@@ -1,6 +1,8 @@
 package com.prijilevschi.controller;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,6 +11,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import com.prijilevschi.model.User;
 import com.prijilevschi.service.UserService;
 
 @ManagedBean(name = "loginController")
@@ -23,14 +26,26 @@ public class LoginController implements Serializable{
 	private transient UserService userService;
 	
 	public String performLogin(){
-		boolean result = userService.login(username, password);
-		if(result){
-			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-			session.setAttribute("username", username);
-			
-			return "index";
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Invalid Login", "Please Try Again!"));
+		try{
+//			User user = new User();
+//			user.setUserName("test");
+//			user.setPassword("test");
+//
+//			Long id = userService.save(user); //constraint violation
+			boolean result = userService.login(username, password);
+
+			if(result){
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+				session.setAttribute("username", username);
+
+				return "index";
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Invalid Login", "Please Try Again!"));
+
+				return "login";
+			}
+		} catch(NoSuchAlgorithmException | InvalidKeySpecException e){ 
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exception Occured", e.getMessage()));
 
 			return "login";
 		}

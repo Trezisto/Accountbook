@@ -1,5 +1,6 @@
 package com.prijilevschi.dao.impl;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -14,10 +15,13 @@ public class UserDAOImpl extends AbstractBaseDAO<User> implements UserDAO {
     }
 
 	@Override
-	public User findByUsernameAndPassword(String username, String password) {
-		TypedQuery<User> query = entityManager.createQuery("FROM User WHERE username = :username AND password = :password", User.class);
+	public User findByUsername(String username) {
+		TypedQuery<User> query = entityManager.createQuery("FROM User WHERE username = :username", User.class);
 		query.setParameter("username", username);
-		query.setParameter("password", password);
-		return query.getSingleResult();
+		try {
+			return query.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
 	}
 }

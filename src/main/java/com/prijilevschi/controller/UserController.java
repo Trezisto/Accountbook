@@ -1,12 +1,13 @@
 package com.prijilevschi.controller;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import com.prijilevschi.model.User;
 import com.prijilevschi.service.UserService;
 
@@ -19,15 +20,6 @@ public class UserController implements Serializable{
 
 	@ManagedProperty(value = "#{userService}")
 	private transient UserService userService;
-
-	public String createUser() {
-//		User user = new User();
-//		user.setUserName("test");
-//		user.setPassword("test");
-//
-//		Long id = userService.save(user); //constraint violation
-		return "derp";
-	}
 
 	public String getValue() {
 		return value;

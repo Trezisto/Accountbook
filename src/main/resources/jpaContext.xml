@@ -45,7 +45,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/accountbook?autoReconnect=true" />
 		<property name="username" value="root" />
-		<property name="password" value="database493query" />
+		<property name="password" value="oracle2013Query" />
 	</bean>
 
 	<bean
