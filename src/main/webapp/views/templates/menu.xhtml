@@ -7,23 +7,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-</h:head>
-<h:body>
-	<p:layout>
-		<p:layoutUnit position="north">
-			<div class="ui-grid ui-grid-responsive">
-				<div class="ui-grid-row">
-					<div class="ui-grid-col-3">
-						<h1>AccountBook</h1>
-					</div>
-					<div class="ui-grid-col-7">
-						<h:graphicImage library="images" name="logo.jpg" />
-					</div>
-				</div>
-			</div>
-			
-		</p:layoutUnit>
+<body>
+	<ui:composition>
+
 		<p:layoutUnit position="west"
 			style="min-width:200px;min-height:400px;">
 			<h:form>
@@ -36,17 +22,7 @@
 				</p:menu>
 			</h:form>
 		</p:layoutUnit>
-		<p:layoutUnit position="center">
-			<h:form>
-				<p:editor value="#{userController.value}" />
-			</h:form>
-		</p:layoutUnit>
-		<p:layoutUnit position="south">
-			<h:form>
-				<h:commandButton action="admin" value="Move to admin panel" />
-			</h:form>
-		</p:layoutUnit>
-	</p:layout>
 
-</h:body>
+	</ui:composition>
+</body>
 </html>

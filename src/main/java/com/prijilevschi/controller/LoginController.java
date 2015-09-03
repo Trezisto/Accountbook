@@ -30,11 +30,6 @@ public class LoginController implements Serializable {
 
 	public String performLogin() {
 		try {
-			// User user = new User();
-			// user.setUserName("test");
-			// user.setPassword("test");
-			//
-			// Long id = userService.save(user); //constraint violation
 			boolean result = userService.login(username, password);
 
 			if (result) {
@@ -57,6 +52,40 @@ public class LoginController implements Serializable {
 		}
 		return "login";
 
+	}
+	
+	//TODO: make message wrong "userName" or "password"
+	//TODO: add email field
+	//TODO: Add password validation
+	//TODO: Make composite component
+	public String registerUser(){
+		try {
+			boolean usernameNotUsed = !userService.checkUserExists(username);
+
+			if (usernameNotUsed) {
+				User user = new User();
+				user.setUserName(username);
+				user.setPassword(password);
+				userService.save(user);
+				
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+				session.setAttribute("username", username);
+
+				return "index";
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_WARN, "User with such name already exists!", "Please Try Again!"));
+				
+				return "login";
+			}
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exception Occured", e.getMessage()));
+		} catch (CannotCreateTransactionException e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Could not create connection to database server!", e.getMessage()));
+		}
+		return "login";
 	}
 
 	public String logout() {

@@ -12,4 +12,5 @@ public interface UserService {
 	User getById(Long id);
 	List<User> getAll();
 	boolean login(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException;
+	boolean checkUserExists(String username);
 }

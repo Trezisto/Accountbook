@@ -21,21 +21,20 @@ import com.prijilevschi.utils.HashPBKDF2Util;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private	UserDAO userDao;
-	
+	private UserDAO userDao;
+
 	@Transactional
-	public Long save(User user) throws InvalidKeySpecException, NoSuchAlgorithmException{
+	public Long save(User user) throws InvalidKeySpecException, NoSuchAlgorithmException {
 		Long id;
 
-		String pass = user.getPassword(); 
-		if(pass != null){
+		String pass = user.getPassword();
+		if (pass != null) {
 			user.setPassword(HashPBKDF2Util.generateStorngPasswordHash(pass));
 		}
 
-		if(user.getId() == null){
+		if (user.getId() == null) {
 			id = userDao.persist(user);
-		}
-		else {
+		} else {
 			User temp = userDao.merge(user);
 			id = temp.getId();
 		}
@@ -45,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void delete(User user) {
 		userDao.remove(user);
-		
+
 	}
 
 	@Transactional(readOnly = true)
@@ -62,9 +61,20 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public boolean login(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		User user = userDao.findByUsername(username);
-		return HashPBKDF2Util.validatePassword(password, user.getPassword());
+		if (user != null) {
+			return HashPBKDF2Util.validatePassword(password, user.getPassword());
+		} else {
+			return false;
+		}
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public boolean checkUserExists(String username){
+		User user = userDao.findByUsername(username);
+		return user != null;
+	}
+
 	public UserDAO getUserDao() {
 		return userDao;
 	}
@@ -72,7 +82,5 @@ public class UserServiceImpl implements UserService {
 	public void setUserDao(UserDAO userDao) {
 		this.userDao = userDao;
 	}
-	
-	
-	
+
 }

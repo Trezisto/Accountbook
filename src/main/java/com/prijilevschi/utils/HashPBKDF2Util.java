@@ -56,7 +56,7 @@ public class HashPBKDF2Util {
      * Validate the password again when user comes back and login
      * @param originalPassword
      * @param storedPassword
-     * @return decrypted password
+     * @return equality with decrypted password
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
      */
