@@ -3,47 +3,21 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:components="http://java.sun.com/jsf/composite/components">
 <h:head>
 	<title>Login</title>
 </h:head>
 <h:body>
-	<h:form id="loginForm">
-		<p:growl id="msg" showDetail="true" life="3000" />
-		<p:tabView style="width:360px;">
-			<p:tab title="Log in">
-				<h:panelGrid>
-					<h:outputText value="Username" />
-					<p:inputText id="username" value="#{loginController.username}"></p:inputText>
-					<p:spacer />
-					<p:message for="username" />
-					<h:outputText value="Password" />
-					<p:password id="password" value="#{loginController.password}"
-						feedback="false" />
-					<p:spacer />
-					<p:message for="password" />
-					<p:spacer />
-					<p:commandButton action="#{loginController.performLogin}"
-						value="Login" update=":loginForm" ajax="true" />
-				</h:panelGrid>
-			</p:tab>
-			<p:tab title="Sign up">
-				<h:panelGrid>
-					<h:outputText value="Username" />
-					<p:inputText id="newUsername" value="#{loginController.username}"></p:inputText>
-					<p:spacer />
-					<p:message for="newUsername" />
-					<h:outputText value="Password" />
-					<p:password id="newPassword" value="#{loginController.password}"
-						feedback="false" />
-					<p:spacer />
-					<p:message for="newPassword" />
-					<p:spacer />
-					<p:commandButton action="#{loginController.registerUser}"
-						value="Sign up" update=":loginForm" ajax="true" />
-				</h:panelGrid>
-			</p:tab>
-		</p:tabView>
-	</h:form>
+	<p:tabView id="loginTabView" style="width:360px;">
+		<p:tab id="logInTab1" title="Log In">
+			<components:loginForm id="logIn" controller="#{loginController}" 
+				registerButtonText="Log In" registerButtonAction="#{loginController.performLogin}" />
+		</p:tab>
+		<p:tab id="signUpTab2" title="Sign Up">
+			<components:loginForm id="signUp" controller="#{loginController}" 
+				registerButtonText="Sign Up" registerButtonAction="#{loginController.registerUser}" />
+		</p:tab>
+	</p:tabView>
 </h:body>
 </html>

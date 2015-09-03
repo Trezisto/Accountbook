@@ -11,41 +11,25 @@
 </h:head>
 <h:body>
 	<p:layout>
-		<p:layoutUnit position="north">
-			<div class="ui-grid ui-grid-responsive">
-				<div class="ui-grid-row">
-					<div class="ui-grid-col-3">
-						<h1>AccountBook</h1>
-					</div>
-					<div class="ui-grid-col-7">
-						<h:graphicImage library="images" name="logo.jpg" />
-					</div>
-				</div>
-			</div>
-			
-		</p:layoutUnit>
-		<p:layoutUnit position="west"
-			style="min-width:200px;min-height:400px;">
-			<h:form>
-				<p:menu>
-					<p:menuitem value="My job" />
-					<p:menuitem value="My plans" />
-					<p:menuitem value="Budget" />
-					<p:menuitem value="My income" />
-					<p:menuitem value="My outcome" />
-				</p:menu>
-			</h:form>
-		</p:layoutUnit>
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/templates/header.xhml" />
+			</ui:insert>
+		</div>
+		
+		<ui:insert name="menu">
+			<ui:include src="/templates/menu.xhml" />
+		</ui:insert>
+
 		<p:layoutUnit position="center">
 			<h:form>
 				<p:editor value="#{userController.value}" />
 			</h:form>
 		</p:layoutUnit>
-		<p:layoutUnit position="south">
-			<h:form>
-				<h:commandButton action="admin" value="Move to admin panel" />
-			</h:form>
-		</p:layoutUnit>
+		
+		<ui:insert name="footer">
+			<ui:include src="/templates/footer.xhml" />
+		</ui:insert>
 	</p:layout>
 
 </h:body>
