@@ -18,10 +18,6 @@ public class DailyOutcome extends AbstractDatedBudgetaryEntity {
 	@Column(columnDefinition = "TEXT")
 	private String comment;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
 	public DailyOutcomeType getDailyOutcomeType() {
 		return dailyOutcomeType;
 	}
@@ -36,13 +32,5 @@ public class DailyOutcome extends AbstractDatedBudgetaryEntity {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

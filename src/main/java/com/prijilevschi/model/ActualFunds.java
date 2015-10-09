@@ -16,16 +16,5 @@ import javax.persistence.Table;
 })
 public class ActualFunds extends AbstractDatedBudgetaryEntity {
 	private static final long serialVersionUID = 2908233300986525271L;
-	
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 }
