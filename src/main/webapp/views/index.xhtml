@@ -7,28 +7,28 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet name="css/style.css" />
 </h:head>
 <h:body>
-	<p:layout>
-		<div id="header">
+	<p:layout fullpage="true" style="margin: 1em !important;">
+
+		<p:layoutUnit id="headerBlock" position="north" size="400">
 			<ui:insert name="header">
 				<ui:include src="/WEB-INF/templates/header.xhtml" />
 			</ui:insert>
-		</div>
-		
-		<ui:insert name="menu">
-			<ui:include src="/WEB-INF/templates/menu.xhtml" />
-		</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" style="min-width:200px;min-height:400px;">
+			<ui:insert name="menu">
+				<ui:include src="/WEB-INF/templates/menu.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
 
 		<p:layoutUnit position="center">
 			<h:form>
 				<p:editor value="#{userController.value}" />
 			</h:form>
 		</p:layoutUnit>
-		
-		<ui:insert name="footer">
-			<ui:include src="/WEB-INF/templates/footer.xhtml" />
-		</ui:insert>
 	</p:layout>
 
 </h:body>
